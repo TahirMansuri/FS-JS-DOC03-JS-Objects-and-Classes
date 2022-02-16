@@ -123,7 +123,8 @@ function addressBookOptions() {
         console.log("2. EDIT CONTACT");
         console.log("3. DELETE CONTACT");
         console.log("4. DISPLAY CONTACTS");
-        console.log("5. EXIT");
+        console.log("5. COUNT CONTACTS");
+        console.log("9. EXIT");
         var choice = Number(readline.question());
         switch(choice) {
             case 1:
@@ -139,10 +140,13 @@ function addressBookOptions() {
                 console.log(addressBookArr);
                 break;
             case 5:
-                
+                console.log("Total Contacts :"+countContacts());
+                break;
+            default:
+                console.log("Invalid Choice.");
                 break;
         }
-    }while(choice!=5);
+    }while(choice!=9);
 }
 
 function newContact() {
@@ -199,7 +203,9 @@ function deleteContact(){
         }
     }
 }
-
+function countContacts(){
+    return [...addressBookArr].map(contact => contact._firstName).reduce((start,firstName)=>start+=1,0);
+}
 try{
     addressBookOptions();
 } catch(e) {
