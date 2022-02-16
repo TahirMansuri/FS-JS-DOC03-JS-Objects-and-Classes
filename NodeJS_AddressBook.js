@@ -1,3 +1,4 @@
+const readline = require("readline-sync");
 class Contact{
 
     constructor(...params){
@@ -113,15 +114,43 @@ class Contact{
     }
 }
 
+function getInformation(contact) {
+    console.log("Enter the Last Name :");
+    contact._lastName = readline.question();
+    console.log("Enter the Address :");
+    contact._address = readline.question();
+    console.log("Enter the City :");
+    contact._city = readline.question();
+    console.log("Enter the State :");
+    contact._state = readline.question();
+    console.log("Enter the Zip :");
+    contact._zip = readline.question();
+    console.log("Enter the Phone No :");
+    contact._phoneno = readline.question();
+    console.log("Enter the Email ID :");
+    contact._email = readline.question();
+}
+
+function editContact() {
+    console.log("Enter the First Name :");
+    let firstName = readline.question();
+    for(let contact of addressBookArr) {
+        if(contact._firstName == firstName){
+            console.log("Contact with First Name Found.");
+            getInformation(contact);
+        } 
+    }
+}
+
 try{
     let contact1 = new Contact("Raj","Shah","ShantiNagar","Shahada","Maharashtra","121212","91 7766554433","raj@gmail.com");
-    console.log(contact1.toString());
+    //console.log(contact1.toString());
 
     let contact2 = new Contact("Ram","Gavale","KrantiNagar","Shahada","Maharashtra","121212","91 1122112211","ram@gmail.com");
-    console.log(contact2.toString());
+    //console.log(contact2.toString());
 
     let contact3 = new Contact("Rizvan","Munshi","KashimaNagar","Shahada","Maharashtra","121212","91 1234562211","rijzan@gmail.com");
-    console.log(contact3.toString());
+    //console.log(contact3.toString());
 
     var addressBookArr = new Array();
     addressBookArr.push(contact1);
@@ -130,5 +159,9 @@ try{
 } catch(e) {
     console.log(e);
 }
+
+console.log(addressBookArr);
+
+editContact();
 
 console.log(addressBookArr);
