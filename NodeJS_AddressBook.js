@@ -114,21 +114,56 @@ class Contact{
     }
 }
 
-function getInformation(contact) {
+var addressBookArr = new Array();
+
+function addressBookOptions() {
+    do{
+        console.log("***ADDRESS BOOK MANAGER***");
+        console.log("1. ADD NEW CONTACT");
+        console.log("2. EDIT CONTACT");
+        console.log("3. DELETE CONTACT");
+        console.log("4. DISPLAY CONTACTS");
+        console.log("5. EXIT");
+        var choice = Number(readline.question());
+        switch(choice) {
+            case 1:
+                newContact();
+                break;
+            case 2:
+                editContact();
+                break;
+            case 3:
+                deleteContact();
+                break;
+            case 4:
+                console.log(addressBookArr);
+                break;
+            case 5:
+                
+                break;
+        }
+    }while(choice!=5);
+}
+
+function newContact() {
+    console.log("Enter the First Name :");
+    let firstName = readline.question();
     console.log("Enter the Last Name :");
-    contact._lastName = readline.question();
+    let lastName = readline.question();
     console.log("Enter the Address :");
-    contact._address = readline.question();
+    let address = readline.question();
     console.log("Enter the City :");
-    contact._city = readline.question();
+    let city = readline.question();
     console.log("Enter the State :");
-    contact._state = readline.question();
+    let state = readline.question();
     console.log("Enter the Zip :");
-    contact._zip = readline.question();
+    let zip = readline.question();
     console.log("Enter the Phone No :");
-    contact._phoneno = readline.question();
+    let phoneno = readline.question();
     console.log("Enter the Email ID :");
-    contact._email = readline.question();
+    let email = readline.question();
+    let contact = new Contact(firstName,lastName,address,city,state,zip,phoneno,email);
+    addressBookArr.push(contact);
 }
 
 function editContact() {
@@ -137,31 +172,36 @@ function editContact() {
     for(let contact of addressBookArr) {
         if(contact._firstName == firstName){
             console.log("Contact with First Name Found.");
-            getInformation(contact);
-        } 
+            console.log("Enter the Last Name :");
+            contact._lastName = readline.question();
+            console.log("Enter the Address :");
+            contact._address = readline.question();
+            console.log("Enter the City :");
+            contact._city = readline.question();
+            console.log("Enter the State :");
+            contact._state = readline.question();
+            console.log("Enter the Zip :");
+            contact._zip = readline.question();
+            console.log("Enter the Phone No :");
+            contact._phoneno = readline.question();
+            console.log("Enter the Email ID :");
+            contact._email = readline.question();        } 
+    }
+}
+
+function deleteContact(){
+    console.log("Enter the First Name :");
+    let firstName = readline.question();
+    for(let contact of addressBookArr) {
+        if(contact._firstName == firstName){
+            addressBookArr.splice(contact,1);
+            console.log("Contact Deleted.")
+        }
     }
 }
 
 try{
-    let contact1 = new Contact("Raj","Shah","ShantiNagar","Shahada","Maharashtra","121212","91 7766554433","raj@gmail.com");
-    //console.log(contact1.toString());
-
-    let contact2 = new Contact("Ram","Gavale","KrantiNagar","Shahada","Maharashtra","121212","91 1122112211","ram@gmail.com");
-    //console.log(contact2.toString());
-
-    let contact3 = new Contact("Rizvan","Munshi","KashimaNagar","Shahada","Maharashtra","121212","91 1234562211","rijzan@gmail.com");
-    //console.log(contact3.toString());
-
-    var addressBookArr = new Array();
-    addressBookArr.push(contact1);
-    addressBookArr.push(contact2);
-    addressBookArr.push(contact3);
+    addressBookOptions();
 } catch(e) {
     console.log(e);
 }
-
-console.log(addressBookArr);
-
-editContact();
-
-console.log(addressBookArr);
