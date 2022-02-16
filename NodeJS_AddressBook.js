@@ -152,22 +152,28 @@ function addressBookOptions() {
 function newContact() {
     console.log("Enter the First Name :");
     let firstName = readline.question();
-    console.log("Enter the Last Name :");
-    let lastName = readline.question();
-    console.log("Enter the Address :");
-    let address = readline.question();
-    console.log("Enter the City :");
-    let city = readline.question();
-    console.log("Enter the State :");
-    let state = readline.question();
-    console.log("Enter the Zip :");
-    let zip = readline.question();
-    console.log("Enter the Phone No :");
-    let phoneno = readline.question();
-    console.log("Enter the Email ID :");
-    let email = readline.question();
-    let contact = new Contact(firstName,lastName,address,city,state,zip,phoneno,email);
-    addressBookArr.push(contact);
+    if([...addressBookArr].filter(contact=>contact._firstName==firstName).reduce((present,firstName)=>present+=1,0))
+    {
+        console.log("The Given Person Name is Already Available")
+    } else {
+        console.log("Enter the Last Name :");
+        let lastName = readline.question();
+        console.log("Enter the Address :");
+        let address = readline.question();
+        console.log("Enter the City :");
+        let city = readline.question();
+        console.log("Enter the State :");
+        let state = readline.question();
+        console.log("Enter the Zip :");
+        let zip = readline.question();
+        console.log("Enter the Phone No :");
+        let phoneno = readline.question();
+        console.log("Enter the Email ID :");
+        let email = readline.question();
+        let contact = new Contact(firstName,lastName,address,city,state,zip,phoneno,email);
+        addressBookArr.push(contact);
+    }
+
 }
 
 function editContact() {
