@@ -125,6 +125,7 @@ function addressBookOptions() {
         console.log("4. DISPLAY CONTACTS");
         console.log("5. COUNT CONTACTS");
         console.log("6. SEARCH BY CITY");
+        console.log("7. COUNT BY CITY");
         console.log("9. EXIT");
         var choice = Number(readline.question());
         switch(choice) {
@@ -146,6 +147,9 @@ function addressBookOptions() {
             case 6:
                 searchByCityState();
                 break;
+            case 7:
+                countByCityState();
+                break;    
             default:
                 console.log("Invalid Choice.");
                 break;
@@ -231,6 +235,17 @@ function searchByCityState() {
         console.log([...addressBookArr].filter(contact => contact._state == state).map(contact => contact));
     }
 }
+
+function countByCityState() {
+    let cityArr = new Array();
+    let stateArr = new Array();
+    [...addressBookArr].forEach(contact => cityArr[contact._city] ? cityArr[contact._city] += 1 : cityArr[contact._city] = 1);
+    [...addressBookArr].forEach(contact => stateArr[contact._state] ? stateArr[contact._state] += 1 : stateArr[contact._state] = 1);
+
+    console.log("City Counts :"+cityArr);
+    console.log("State Counts :"+stateArr);
+}
+
 try{
     addressBookOptions();
 } catch(e) {
