@@ -126,6 +126,7 @@ function addressBookOptions() {
         console.log("5. COUNT CONTACTS");
         console.log("6. SEARCH BY CITY");
         console.log("7. COUNT BY CITY");
+        console.log("8. SORT BY FIRST NAME")
         console.log("9. EXIT");
         var choice = Number(readline.question());
         switch(choice) {
@@ -150,6 +151,9 @@ function addressBookOptions() {
             case 7:
                 countByCityState();
                 break;    
+            case 8:
+                sortByName();
+                break;
             default:
                 console.log("Invalid Choice.");
                 break;
@@ -244,6 +248,19 @@ function countByCityState() {
 
     console.log("City Counts :"+cityArr);
     console.log("State Counts :"+stateArr);
+}
+
+function sortByName(){
+    addressBookArr.sort(function (a, b) {
+        if (a._firstName > b._firstName) {
+            return 1;
+        }
+        if (b._firstName > a._firstName) {
+            return -1;
+        }
+        return 0;
+    });
+    console.log([...addressBookArr]);
 }
 
 try{
