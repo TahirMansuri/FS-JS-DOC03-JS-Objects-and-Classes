@@ -127,7 +127,7 @@ function addressBookOptions() {
         console.log("6. SEARCH BY CITY");
         console.log("7. COUNT BY CITY");
         console.log("8. SORT BY FIRST NAME")
-        console.log("9. EXIT");
+        console.log("13. EXIT");
         var choice = Number(readline.question());
         switch(choice) {
             case 1:
@@ -154,11 +154,17 @@ function addressBookOptions() {
             case 8:
                 sortByName();
                 break;
+            case 9:
+                console.log("Enter Choice to Sort Contact.");
+                console.log("1. City \t 2. State \t 3. Zip");
+                var sortchoice = Number(readline.question());
+                sortByChoice(sortchoice);
+                break;
             default:
                 console.log("Invalid Choice.");
                 break;
         }
-    }while(choice!=9);
+    }while(choice!=13);
 }
 
 function newContact() {
@@ -249,7 +255,6 @@ function countByCityState() {
     console.log("City Counts :"+cityArr);
     console.log("State Counts :"+stateArr);
 }
-
 function sortByName(){
     addressBookArr.sort(function (a, b) {
         if (a._firstName > b._firstName) {
@@ -260,6 +265,43 @@ function sortByName(){
         }
         return 0;
     });
+    console.log([...addressBookArr]);
+}
+
+function sortByChoice(sortchoice){
+    if(sortchoice == 1) {
+        addressBookArr.sort(function (a, b) {
+            if (a._city > b._city) {
+                return 1;
+            }
+            if (b._city > a._city) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    if(sortchoice == 2) {
+        addressBookArr.sort(function (a, b) {
+            if (a._state > b._state) {
+                return 1;
+            }
+            if (b._state > a._state) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    if(sortchoice == 3) {
+        addressBookArr.sort(function (a, b) {
+            if (a._zip > b._zip) {
+                return 1;
+            }
+            if (b._zip > a._zip) {
+                return -1;
+            }
+            return 0;
+        });
+    }
     console.log([...addressBookArr]);
 }
 
